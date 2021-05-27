@@ -1,0 +1,30 @@
+{
+  "name": "pi-ware-bot",
+  "version": "1.0.0",
+  "description": "A bot for the pi-ware discord server.",
+  "main": "Main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cls && nodemon Main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oxmc/pi-ware-bot.git"
+  },
+  "keywords": [
+    "Discordjs",
+    "pi-ware"
+  ],
+  "author": "oxmc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oxmc/pi-ware-bot/issues"
+  },
+  "homepage": "https://github.com/oxmc/pi-ware-bot#readme",
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "discord-welcome-card": "^3.7.5",
+    "discord.js": "^12.5.3",
+    "nodemon": "^2.0.7"
+  }
+}
