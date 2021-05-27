@@ -58,6 +58,7 @@ const HelpEmbed = new Discord.MessageEmbed()
       { name: config.prefix + 'license', value: 'Show a embed with the pi-ware license' },
       { name: config.prefix + 'desc', value: 'Show a embed with the pi-ware description' },
       { name: config.prefix + 'apps', value: 'Show an embed with all apps that are currently on pi-ware' },
+      { name: config.prefix + 'ping', value: 'Shows the bot Latencyand API Latency.' },
   	)
   	.setFooter('Thanks for using this bot!', 'https://cdn.discordapp.com/avatars/825032483766009897/8ad1f9b90757d6c7b3e06b3629760d32.png?size=128');
 
@@ -121,10 +122,14 @@ client.on('message', async message => { // When the bot receives a message
   if (command === 'help') {
     if (message.member.hasPermission('ADMINISTRATOR')) {
       message.channel.send(HelpEmbed);
+      //This line dm's the user who sent the prefix + help
       message.author.send(CommandEmbed2)
     } else {
       message.channel.send(HelpEmbed);
     }
+  }
+  if (command === "ping") {
+    message.channel.send(`🏓Latency is ${Date.now() - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
   }
   if (command === 'apps') {
       const AppsEmbed = new Discord.MessageEmbed()
