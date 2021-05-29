@@ -1,5 +1,5 @@
 # pi-ware-bot
-This id the repo for the pi-ware discord bot.
+This is the repo for the pi-ware discord bot.
 
 **Join the pi-ware Discord server**:
 
