@@ -5,7 +5,7 @@
   "main": "Main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cls && nodemon Main.js"
+    "start": "cls && nodemon src/js/Main.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/oxmc/pi-ware-bot#readme",
   "dependencies": {
     "canvas": "^2.8.0",
+    "discord-rpc": "^3.2.0",
     "discord-welcome-card": "^3.7.5",
     "discord.js": "^12.5.3",
     "nodemon": "^2.0.7"
