@@ -2,13 +2,13 @@
 const Discord = require('discord.js');
 const { welcomeImage } = require('discord-welcome-card');
 const client = new Discord.Client();
+const http = require('http'); // or 'https' for https:// URLs
 const fs = require('fs');
+var path = require('path');
 
 //Require usermade modules
 const config = require('../json/config.json');
 const welcome = require("../functions/welcome");
-//const rolemang = require("../functions/give-role");
-//const slashcommands = require("./slashcommands");
 
 //Functions
 function Restart() {
@@ -61,22 +61,22 @@ const CommandEmbed2 = new Discord.MessageEmbed()
   	.setFooter('Thanks for using this bot!', 'https://cdn.discordapp.com/avatars/825032483766009897/8ad1f9b90757d6c7b3e06b3629760d32.png?size=128');
 
 const HelpEmbed = new Discord.MessageEmbed()
-	.setColor('#0099ff')
+  .setColor('#0099ff')
   .setTitle('help')
   .setAuthor('Pi-ware Bot', 'https://cdn.discordapp.com/avatars/825032483766009897/8ad1f9b90757d6c7b3e06b3629760d32.png?size=128', 'https://oxmc.github.io/pi-ware/')
   .setDescription('Here are all the things that you can do with this bot!')
   .addFields(
-  		{ name: 'commands', value: '\u200B' },
-  		{ name: config.prefix + 'help', value: 'Shows this help embed' },
+      { name: 'commands', value: '\u200B' },
+      { name: config.prefix + 'help', value: 'Shows this help embed' },
       { name: config.prefix + 'reddit', value: 'Shows an embed with the reddit link.' },
-  		{ name: config.prefix + 'version', value: 'Show a embed with the bots version' },
+      { name: config.prefix + 'version', value: 'Show a embed with the bots version' },
       { name: config.prefix + 'progress', value: 'Show a embed with the progress of pi-ware development' },
       { name: config.prefix + 'license', value: 'Show a embed with the pi-ware license' },
       { name: config.prefix + 'desc', value: 'Show a embed with the pi-ware description' },
       { name: config.prefix + 'apps', value: 'Show an embed with all apps that are currently on pi-ware' },
       { name: config.prefix + 'ping', value: 'Shows the bot Latency and API Latency.' },
-  	)
-  	.setFooter('Thanks for using this bot!', 'https://cdn.discordapp.com/avatars/825032483766009897/8ad1f9b90757d6c7b3e06b3629760d32.png?size=128');
+  )
+  .setFooter('Thanks for using this bot!', 'https://cdn.discordapp.com/avatars/825032483766009897/8ad1f9b90757d6c7b3e06b3629760d32.png?size=128');
 
 const VersionEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
@@ -167,6 +167,21 @@ client.on('message', async message => { // When the bot receives a message
         .setDescription('Here are all the apps in pi-ware!')
         .setFooter('Thanks for using this bot!', 'https://cdn.discordapp.com/avatars/825032483766009897/8ad1f9b90757d6c7b3e06b3629760d32.png?size=128');
 
+      const path = './file.txt'
+
+      try {
+        fs.unlinkSync(path)
+        //file removed
+      } catch(err) {
+        console.error(err)
+      }
+      
+      //Download apps.json
+      const file = fs.createWriteStream("apps.json");
+      const request = http.get("https://raw.githubusercontent.com/zachthecoder14/pi-ware/main/func/applist.json", function(response) {
+        response.pipe(file);
+      });
+	  
       //Read app list
       fs.readFile('./src/json/apps.json', 'utf8', (err, data) => {
 
